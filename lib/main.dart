@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -68,9 +69,19 @@ class _GridImageState extends State<GridImage> {
           itemCount: images.length,
           itemBuilder: (BuildContext ctx, index){
         return Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(shape: BoxShape.circle),
           child: ClipRRect(borderRadius: BorderRadius.all(Radius.circular(10)),
-          child: Image.network(images[index].image, height: 100,width: 100, fit:BoxFit.fill),),
+          child: Column(
+            children: [
+              Image.network(images[index].image, height: 100,width: 100, fit:BoxFit.fill),
+              SizedBox(
+                height: 3,
+              ),
+              Text(images[index].name,style: TextStyle(fontSize: 16),)
+            ],
+          ),),
 
         );
           }
